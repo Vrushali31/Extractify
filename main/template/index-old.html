@@ -1,0 +1,11 @@
+<form name="Form" enctype = "multipart/form-data" action="upload_file" method="POST">
+    {% csrf_token %}
+    <input type="file" name="filename">
+    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="filetype">
+        <option selected>Select</option>
+        <option value="1">Image</option>
+        <option value="2">Video</option>  
+    </select>
+    <button type="submit">Convert</button>
+</form>
+{{text}}
