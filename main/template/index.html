@@ -1,0 +1,291 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {{ form.media }}
+      {% include 'django_quill/media.html' %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="{% static 'images/favicon.png' %}" rel="icon">
+  <link href="{% static 'images/icon.jpeg' %}" rel="apple-touch-icon">
+  <title>Extractify</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Favicons -->
+{% comment %} <link href="{% static 'images/favicon.png' %}" rel="icon">
+<link href="{% static 'images/apple-touch-icon.png' %}" rel="apple-touch-icon"> {% endcomment %}
+
+<!-- Google Fonts -->
+{% comment %} <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> {% endcomment %}
+
+  <link rel="stylesheet" href="{% static 'fonts/flat-icon/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" 
+          href=
+"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+          integrity=
+"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
+          crossorigin="anonymous">
+    <!-- fontawesome cdn For Icons -->
+    <link rel="stylesheet"
+          href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" 
+          integrity=
+"sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" 
+          crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href=
+"https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
+          integrity=
+"sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous" />
+
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Kreon:wght@300&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
+  
+    <!--Internal CSS start-->
+    <style>
+        h1 {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            text-align: center;
+            color: #957dad;
+            font-family: 'Montserrat', sans-serif;
+        }
+          
+        section {
+            padding: 5%;
+            padding-top: 0;
+            height: 100vh;
+        }
+          
+        .side {
+            margin-left: 0;
+        }
+          
+        button {
+            margin: 10px;
+            border-color: #957dad !important;
+            color: #888888 !important;
+            margin-bottom: 25px;
+        }
+          
+        button:hover {
+            background-color: #fec8d8 !important;
+        }
+          
+        textarea {
+            width: 84%;
+            padding: 3%;
+            margin-top:2%;
+            border-color: #957dad;
+            border-width: thick;
+        }
+          
+        .flex-box {
+            display: flex;
+            justify-content: center;
+        }
+
+        .edit-button{
+          font-size: 17px;
+        }
+
+        .title{
+          font-family: 'Nunito Sans', sans-serif;
+          color: white;
+          font-size:100px;
+        }
+    </style>
+    <!--Internal CSS End-->
+
+</head>
+<body>
+<div id="content-wrapper">
+  <header class="header header--bg">
+    <div class="container">
+      <div class="block"><center><h3 style="color: white; font-weight:800;font-size: 2rem; margin:5% 0% 2% 0%;">{{error}}</h3><center></div>
+        
+      <div class="header__content text-center">
+        <b><h1 class="title" style = "font-family: 'Berkshire Swash', cursive;
+          color: white;
+          font-size:100px; padding-bottom: 5%;">Extractify</h1></b>
+        <span class="header__content__block">EXTRACT TEXT FROM IMAGES AND VIDEOS</span>
+        <!-- <h1 class="header__content__title">I'M JOHNNY D. DORSCH</h1> -->
+        <ul class="header__content__sub-title">
+          <!-- <li>UI&#47;UX DESIGNER <span class="padding">&#45;</span></li> -->
+          <li>Upload Files Here</li>
+          <!-- <li>PHOTOGRAPHAR</li> -->
+        </ul>
+                <form name="Form" enctype = "multipart/form-data" action="upload_file" method="POST">
+                  {% csrf_token %}
+                      <div class="form-group files">
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="filetype" required style="font-size: 20px;">
+                          <option value="0">File Type</option>
+                          <option value="1">Image</option>
+                          <option value="2">Video</option> 
+                          <option value="3">Audio</option>  
+                      </select>
+                        <center><input type="file" class="form-control" name ="filename" style="font-size: 20px;"></center>
+                        {% comment %} <h6 class="form-control" style="font-size: 20px;"> or drag it here.</h6> {% endcomment %}
+                      </div>
+                      <br>
+            <div class="col-auto my-1">
+              <button type="submit" style="font-size:20px ;" class="btn-2 btn btn-light">Convert</button>
+            </div>
+                      
+                    
+                  </form>
+      </div>
+
+      
+      </div>
+    </div>
+    
+  </header>
+
+  {% comment %} <footer class="footer footer--bg"> {% endcomment %}
+    
+    
+    {% comment %} <div class="container text-center">
+      
+      <p class="footer__paragraph">Copyright &copy; 2017 DartThemes , All Rights Reserved.</p>
+    </div> {% endcomment %}
+  {% comment %} </footer> {% endcomment %}
+
+  <script src="{% static 'jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/mixitup.js'%}"></script>
+
+
+  <section class="">
+    <h1 class="shadow-sm" style="font-size: 35px;" id="display_text">TEXT EDITOR</h1>
+    <div class="flex-box">
+        <div class="row">
+            <div class="col">
+                <!-- Adding different buttons for
+                     different functionality-->
+                <!--onclick attribute is added to give 
+                    button a work to do when it is clicked-->
+                <button type="button" 
+                        onclick="f1()" 
+                        class=" edit-button shadow-sm btn btn-outline-secondary" 
+                        data-toggle="tooltip"
+                        data-placement="top" 
+                        title="Bold Text">
+        Bold</button>
+                <button type="button" 
+                        onclick="f2()" 
+                        class=" edit-button shadow-sm btn btn-outline-success" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Italic Text">
+        Italic</button>
+                <button type="button" 
+                        onclick="f3()" 
+                        class=" edit-button shadow-sm btn btn-outline-primary" 
+                        data-toggle="tooltip" 
+                        data-placement="top"
+                        title="Left Align">
+        <i class="fas fa-align-left"></i></button>
+                <button type="button" 
+                        onclick="f4()" 
+                        class=" edit-button btn shadow-sm btn-outline-secondary" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Center Align">
+        <i class="fas fa-align-center"></i></button>
+                <button type="button" 
+                        onclick="f5()" 
+                        class=" edit-button btn shadow-sm btn-outline-primary" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Right Align">
+        <i class="fas fa-align-right"></i></button>
+                <button type="button" 
+                        onclick="f6()" 
+                        class=" edit-button btn shadow-sm btn-outline-secondary" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Uppercase Text">
+        Upper Case</button>
+                <button type="button" 
+                        onclick="f7()" 
+                        class=" edit-button btn shadow-sm btn-outline-primary" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Lowercase Text">
+        Lower Case</button>
+                <button type="button" 
+                        onclick="f8()" 
+                        class=" edit-button btn shadow-sm btn-outline-primary" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Capitalize Text">
+        Capitalize</button>
+                <button type="button" 
+                        onclick="f9()" 
+                        class=" edit-button btn shadow-sm btn-outline-primary side" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Tooltip on top">
+        Clear Text</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-2 col-sm-2">
+        </div>
+        <div class="col-md-8 col-sm-8">
+            <div class="flex-box">
+                <textarea id="textarea1" 
+                          class="input shadow" 
+                          name="name" 
+                          rows="15" 
+                          cols="120" style="font-size: 18px;">{{text}}
+                </textarea>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</section>
+<br>
+<br>
+
+<!--External JavaScript file-->
+<script src="static\js\editor.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>  
